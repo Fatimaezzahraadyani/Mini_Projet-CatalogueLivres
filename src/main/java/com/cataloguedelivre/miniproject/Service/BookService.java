@@ -5,7 +5,9 @@ import com.cataloguedelivre.miniproject.Model.Book;
 import com.cataloguedelivre.miniproject.Repository.BookRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -24,8 +26,8 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Book getBookById(Long id){
-        return bookRepository.getBookById(id);
+    public Optional<Book> getBookById(Long id){
+        return bookRepository.findById(id);
     }
 
     public void deleteBookById(Long id){
@@ -38,5 +40,9 @@ public class BookService {
 
     public List<Book> getBooksByMot(String mot){
         return bookRepository.getBookByTitleOrDescriptionLike(mot);
+    }
+
+    public List<Book> getBooksByDateBetween(Date Date1, Date Date2){
+        return bookRepository.getBookByDatePublicationBetween(Date1,Date2);
     }
 }

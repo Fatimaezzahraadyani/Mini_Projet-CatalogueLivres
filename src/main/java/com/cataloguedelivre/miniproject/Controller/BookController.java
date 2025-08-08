@@ -5,7 +5,9 @@ import com.cataloguedelivre.miniproject.Model.Book;
 import com.cataloguedelivre.miniproject.Service.BookService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
@@ -22,13 +24,13 @@ public class BookController {
         return bookService.addBook(book);
     }
 
-    @GetMapping("Books")
+    @GetMapping("/AllBooks")
     public List<Book> getAllBooks(){
         return bookService.getBooks();
     }
 
-    @GetMapping("/{id}")
-    public Book getBook(@PathVariable Long id){
+    @GetMapping("/getbyId/{id}")
+    public Optional<Book> getBook(@PathVariable Long id){
         return bookService.getBookById(id);
     }
 
@@ -42,10 +44,16 @@ public class BookController {
         return bookService.updateBook(book);
     }
 
-    @GetMapping("/{mot}")
+    @GetMapping("/search/{mot}")
     public List<Book> getBooksByMot(@PathVariable String mot){
         return bookService.getBooksByMot(mot);
     }
+
+    @GetMapping("/searchByDate")
+    public List<Book> getBooksBySearchByDate(@RequestParam Date dateMin, @RequestParam Date dateMax){
+        return bookService.getBooksByDateBetween(dateMin, dateMax);
+    }
+
 
 
 }
