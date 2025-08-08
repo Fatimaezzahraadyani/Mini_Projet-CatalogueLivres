@@ -42,5 +42,10 @@ public class BookController {
         return bookService.updateBook(book);
     }
 
+    @GetMapping("/{mot}")
+    public List<Book> getBooksByMot(@PathVariable String mot){
+        return bookService.getBooksByMot(mot);
+    }
+
 
 }

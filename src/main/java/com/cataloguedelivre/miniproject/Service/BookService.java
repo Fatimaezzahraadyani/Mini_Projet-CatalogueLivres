@@ -35,4 +35,8 @@ public class BookService {
     public Book updateBook(Book book){
         return bookRepository.save(book);
     }
+
+    public List<Book> getBooksByMot(String mot){
+        return bookRepository.getBookByTitleOrDescriptionLike(mot);
+    }
 }

@@ -2,6 +2,8 @@ package com.cataloguedelivre.miniproject.Model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 public class Book {
     @Id
@@ -10,6 +12,13 @@ public class Book {
 
     private String title;
     private String isbn;
+
+    private String description;
+    private Date DatePublication;
+
+    private String Genre;
+
+
 
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
@@ -45,5 +54,29 @@ public class Book {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDatePublication() {
+        return DatePublication;
+    }
+
+    public void setDatePublication(Date datePublication) {
+        DatePublication = datePublication;
+    }
+
+    public String getGenre() {
+        return Genre;
+    }
+
+    public void setGenre(String genre) {
+        Genre = genre;
     }
 }

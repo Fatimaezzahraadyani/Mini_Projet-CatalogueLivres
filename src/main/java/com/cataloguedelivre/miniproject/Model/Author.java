@@ -1,8 +1,10 @@
 package com.cataloguedelivre.miniproject.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,6 +17,7 @@ public class Author {
     private String biography;
 
     @OneToMany(mappedBy = "author" , cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Book> books;
 
 
@@ -49,4 +52,5 @@ public class Author {
     public void setBooks(List<Book> books) {
         this.books = books;
     }
+
 }
